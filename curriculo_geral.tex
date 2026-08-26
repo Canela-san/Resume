@@ -1,0 +1,271 @@
+% ======================================================================
+% CURRÍCULO GERAL / MASTER — Gabriel Canela
+% ======================================================================
+% COMO USAR ESTE ARQUIVO (leia antes de editar):
+%
+% Este é o currículo MESTRE: contém tudo que pode ser relevante em
+% alguma candidatura. Para gerar a versão de uma vaga específica:
+%   1) Copie este arquivo (ex.: cv_empresa-x.tex);
+%   2) Apague blocos inteiros de \entry{...}{...}{...}{...} + itemize
+%      que não interessarem para a vaga (cada bloco de experiência e
+%      de projeto está isolado entre comentários "% ---- INÍCIO/FIM");
+%   3) Apague itens da seção "Softwares e Ferramentas" e linhas da
+%      seção "Habilidades e Competências" que não forem relevantes;
+%   4) Se o resultado couber em 1 página, pode reduzir a fonte para
+%      10pt (troque [a4paper,11pt] por [a4paper,10pt] abaixo) e/ou
+%      remover o rodapé de paginação (comente \pagestyle{fancy}).
+%
+% Cada bloco de Experiência/Projeto é independente — apagar um bloco
+% inteiro não quebra os outros.
+% ======================================================================
+
+\documentclass[a4paper,11pt]{article}
+
+% ---------- Codificação, idioma e tipografia ----------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}          % garante extração correta de acentos (ATS/copiar-colar)
+\usepackage[a4paper,left=2cm,right=2cm,top=1.6cm,bottom=1.8cm]{geometry}
+\usepackage{charter}              % fonte serifada mais legível que Computer Modern, boa para impressão
+\usepackage{microtype}            % melhora justificação e espaçamento fino
+\usepackage{ragged2e}
+
+% ---------- Ícones, cor e links ----------
+\usepackage{fontawesome5}
+\usepackage{xcolor}
+\definecolor{accent}{RGB}{31,58,95}   % azul-marinho discreto — legível também em P&B
+\definecolor{graytext}{RGB}{95,95,95}
+
+\usepackage{hyperref}
+\hypersetup{
+    pdftitle={Gabriel Canela - Curriculo},
+    pdfauthor={Gabriel Canela},
+    pdfsubject={Curriculo - Engenharia de Controle e Automacao},
+    colorlinks=true,
+    linkcolor=accent,
+    filecolor=accent,
+    urlcolor=accent,
+    citecolor=accent
+}
+
+% ---------- Seções ----------
+\usepackage{titlesec}
+\titleformat{\section}{\color{accent}\large\bfseries}{\thesection}{1em}{}[{\color{accent}\titlerule}]
+\titlespacing*{\section}{0pt}{14pt}{8pt}
+
+% ---------- Listas (espaçamento confortável, sem "parede de texto") ----------
+\usepackage{enumitem}
+\setlist[itemize,1]{leftmargin=1.15em, itemsep=3pt, topsep=4pt, parsep=0pt, partopsep=0pt, label=\textbullet}
+
+% ---------- Rodapé com paginação (documento é multi-página) ----------
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.3pt}
+\fancyfoot[C]{\small\color{graytext} Gabriel Canela \quad\textperiodcentered\quad Currículo \quad\textperiodcentered\quad Página \thepage\ de \pageref{LastPage}}
+
+\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{3em}
+
+% ---------- Comando padrão para entradas (experiência/projeto/educação) ----------
+% #1 = título (empresa/projeto/instituição)  #2 = data
+% #3 = subtítulo (cargo/tipo)                #4 = local/observação
+\newcommand{\entry}[4]{%
+  \noindent\textbf{#1} \hfill \textbf{#2}\\
+  \textit{#3} \hfill \textit{#4}
+  \vspace{3pt}
+}
+\newcommand{\entrygap}{\vspace{9pt}}
+
+\begin{document}
+
+% ======================================================================
+% CABEÇALHO
+% ======================================================================
+\noindent
+\begin{minipage}[t]{0.52\textwidth}
+\textcolor{accent}{\textbf{\Huge Gabriel Canela}}
+\end{minipage}%
+\begin{minipage}[t]{0.48\textwidth}
+\raggedleft
+
+\href{tel:+5519996831296}{\faPhone \space +55 (19) 99683-1296} \quad
+\href{mailto:gabriel.canela.ti@gmail.com}{\faEnvelope \space gabriel.canela.ti@gmail.com}
+
+\vspace{2pt}
+
+\faMapMarker \space Campinas - SP, Brasil
+
+\vspace{2pt}
+
+\href{https://github.com/Canela-san}{\faGithub \space github.com/Canela-san} \quad
+\href{https://www.linkedin.com/in/gabriel-canela-ti/}{\faLinkedin \space linkedin.com/in/gabriel-canela-ti}
+\end{minipage}
+
+\vspace{0.6em}
+
+\begin{center}
+{\Large\bfseries\color{accent} Engenharia de Controle e Automação --- Unicamp}\\[3pt]
+{\normalsize\color{graytext} Sistemas Embarcados de Tempo Real \textperiodcentered\ Instrumentação \textperiodcentered\ Eletrônica e Firmware \textperiodcentered\ Automação de Processos e Dados}
+\end{center}
+
+\vspace{0.3em}
+
+\section*{Resumo Profissional}
+
+Estudante de Engenharia de Controle e Automação pela Unicamp, com formação técnica dupla em Informática e Informática para Internet (ETEC) e perfil focado no desenvolvimento de sistemas de precisão. Atualmente atuo como Pesquisador (Bolsista FAPESP) no desenvolvimento de instrumentação embarcada para redes elétricas, combinando modelagem de sistemas de controle, integração mecatrônica e processamento digital de sinais. Tenho experiência de ponta a ponta na condução de projetos de hardware e firmware sob demanda de clientes reais --- da concepção da PCB à entrega validada em campo --- além de vivência prática em laboratório de pesquisa (LabREI/Unicamp) na montagem e validação de conversores de potência. Proficiente em programação de baixo nível (C, C++, Assembly) e alto nível (Python, automação de scripts), com domínio de ferramentas de simulação e projeto de hardware (MATLAB/Simulink, Altium Designer, LTspice). % ATS: remova a frase abaixo se a candidatura não for para estágio/trainee
+Em busca de oportunidades de estágio ou trainee em sistemas embarcados, instrumentação, automação industrial ou desenvolvimento de firmware.
+
+
+\section*{Experiência}
+
+% ---- INÍCIO: FEEC Unicamp (FAPESP) ------------------------------------
+\entry{FEEC Unicamp (Projeto FAPESP)}{2025 -- Atual}{Pesquisador de Iniciação Científica}{Campinas, SP}
+\begin{itemize}
+\item Desenvolvimento de um sistema embarcado de medição de alta performance para identificação de supraharmônicos em redes elétricas, com taxas de amostragem na ordem de centenas de kHz.
+\item Programação de firmware em C e Assembly no subsistema de tempo real (PRU-ICSS) da BeagleBone Black, controlando o barramento SPI para aquisição de dados determinística.
+\item Execução de engenharia reversa e depuração física em placas de circuito impresso (PCB) customizadas de aquisição de sinal, isolando falhas de hardware sem uso de osciloscópio.
+\item Reestruturação de software embarcado em ambiente Linux, com reconfiguração de Device Tree e integração de processos de persistência de dados.
+\item Elaboração de setups de teste e condução de validações experimentais baseadas em processamento digital de sinais (FFT).
+\end{itemize}
+\entrygap
+% ---- FIM: FEEC Unicamp (FAPESP) ----------------------------------------
+
+% ---- INÍCIO: LabREI ----------------------------------------------------
+\entry{LabREI (Lab. de Redes Elétricas Inteligentes) --- FEEC Unicamp}{2022 -- 2024}{Técnico de Laboratório}{Campinas, SP}
+\begin{itemize}
+\item Apoio técnico a pesquisadores de pós-graduação na elaboração de setups de teste e validação experimental de projetos de eletrônica de potência.
+\item Integração de sistemas mecânicos e eletrônicos: cotação e escolha de componentes, usinagem/furação de painéis metálicos e execução das conexões elétricas de um conversor CA/CC bidirecional de 4 pernas de alta potência.
+\item Administração da infraestrutura de TI do laboratório, gerenciando servidor local baseado em Linux Ubuntu, site institucional e atualização de certificados.
+\item Treinamento de usuários na correta operação de equipamentos de medição e manutenção de hardware/software dos computadores de pesquisa.
+\end{itemize}
+\entrygap
+% ---- FIM: LabREI --------------------------------------------------------
+
+% ---- INÍCIO: Mecatron Jr. (NOVO) ----------------------------------------
+\entry{Mecatron Projetos e Consultoria Jr.}{2022 -- 2023}{Assessor de Projetos}{Campinas, SP}
+\begin{itemize}
+\item Responsável de ponta a ponta pelo projeto \textbf{MecaVac} --- refrigerador inteligente para armazenamento de vacinas, desenvolvido sob demanda de um cliente externo --- da concepção ao hardware, firmware, documentação técnica e interlocução direta com o cliente.
+\item Projeto completo de PCB customizada de dupla camada no Altium Designer, integrando microcontrolador ESP32, drivers de potência para atuadores e gerenciamento de energia com backup por supercapacitores.
+\item Desenvolvimento do firmware embarcado em C/C++ (ESP32, PlatformIO/Arduino), implementando controle de temperatura por PWM, log de eventos em cartão microSD com RTC, monitoramento de sensores e provisionamento de rede Wi-Fi via portal cativo.
+\item Condução de testes de bancada e de campo até a aprovação técnica formal do cliente, entregando um produto validado e colocado em operação.
+\end{itemize}
+\entrygap
+% ---- FIM: Mecatron Jr. ---------------------------------------------------
+
+\section*{Projetos e Destaques}
+
+% ---- INÍCIO: SH-Analyzer -------------------------------------------------
+\entry{SH-Analyzer: Analisador de Supraharmônicos}{2025 -- Atual}{Iniciação Científica (Bolsista FAPESP)}{github.com/Canela-san/SH-Analyzer}
+\begin{itemize}
+\item Desenvolvimento de um sistema híbrido de instrumentação de alto desempenho (BeagleBone Black + PCB customizada) para aquisição determinística de sinais em redes elétricas, buscando superar o limite de aprox.\ 102,4~kHz de um protótipo anterior em C puro.
+\item Programação de firmware em Assembly nativo para o coprocessador de tempo real PRU-ICSS, implementando o protocolo manual do ADC ADS8688 (16~bits) e gravação em buffers \textit{ping-pong} isolados na DDR, sincronizados com o ARM por handshake em memória compartilhada.
+\item Extensão da arquitetura para captura multi-canal intercalada (\textit{round-robin}) do ADC, com calibração e FFT independentes por canal nas ferramentas de pós-processamento em Python (NumPy, SciPy, Pandas, Matplotlib).
+\item Depuração de hardware em bancada, isolando um bug de saturação no barramento SPI até um padrão de assimetria de tempo de subida/descida característico de um optoacoplador, por meio de um script de diagnóstico dedicado.
+\end{itemize}
+\entrygap
+% ---- FIM: SH-Analyzer ------------------------------------------------------
+
+% ---- INÍCIO: MecaVac (NOVO) -------------------------------------------------
+\entry{MecaVac: Refrigerador Inteligente para Vacinas}{2022}{Mecatron Jr. --- Projeto sob demanda de cliente}{github.com/Canela-san/MecaVac}
+\begin{itemize}
+\item Projeto e roteamento de placa de circuito impresso de 2 camadas (Altium Designer) integrando o controlador ESP32-WROOM-32D, reguladores lineares, drivers de MOSFET de potência e proteção contra transientes na entrada de energia.
+\item Arquitetura de firmware não bloqueante (máquina de estados, temporização por \texttt{millis()}) controlando dois módulos Peltier por PWM em múltiplos patamares de potência, a partir da leitura combinada de três sensores de temperatura (OneWire).
+\item Log de eventos em cartão microSD com marcação temporal via RTC, com backup de energia baseado em supercapacitores e circuito de \textit{soft-start}, garantindo a gravação segura do evento em caso de queda de energia.
+\item Provisionamento de rede Wi-Fi via portal cativo e sincronização periódica de status com um servidor remoto do cliente, mantendo o log local como redundância independente da internet.
+\item Projeto validado em testes de campo e formalmente aprovado pelo cliente, do levantamento de requisitos à entrega final.
+\end{itemize}
+\entrygap
+% ---- FIM: MecaVac ------------------------------------------------------------
+
+% ---- INÍCIO: Custom Processor from Scratch -----------------------------------
+\entry{Custom Processor from Scratch with MOSFETs}{2025 -- Atual}{Projeto de Microarquitetura e Hardware}{github.com/Canela-san/ProcessorFromScratch}
+\begin{itemize}
+\item Concepção de arquitetura computacional completa a partir do nível de componentes físicos, mapeando diagramas de blocos de ULA, banco de registradores e unidade de controle.
+\item Modelagem e simulação de circuitos lógicos digitais no simulador \textit{Digital}, com transição planejada para validação de portas lógicas puramente baseadas em transistores MOSFET.
+\item Desenvolvimento de um conjunto de instruções (ISA) e montador Assembly customizado para validação física da microarquitetura por meio da emulação de periféricos de display.
+\end{itemize}
+\entrygap
+% ---- FIM: Custom Processor from Scratch -------------------------------------
+
+% ---- INÍCIO: Nuvem-Privada -------------------------------------------------
+\entry{Nuvem-Privada: Infraestrutura NAS Self-Hosted}{2026}{Projeto de Automação de Infraestrutura de TI}{github.com/Canela-san/Nuvem-Privada}
+\begin{itemize}
+\item Orquestração e containerização de um ecossistema de nuvem privada com Docker e Docker Compose, integrando Nextcloud, banco de dados MariaDB e cache Redis com verificações de saúde (\textit{health checks}) entre serviços.
+\item Automação de rotinas de manutenção em segundo plano via Shell Script, com pipelines de sincronização de arquivos, limpeza de banco de dados e backups consistentes a frio.
+\item Provisionamento seguro de rede via VPN mesh (Tailscale) para acesso remoto criptografado, sem exposição direta de portas do servidor à internet.
+\end{itemize}
+\entrygap
+% ---- FIM: Nuvem-Privada -------------------------------------------------
+
+% ---- INÍCIO: isp-benchmark-suite (NOVO) -------------------------------------------------
+\entry{isp-benchmark-suite: Auditoria de Qualidade de Rede}{2026}{Projeto Pessoal}{github.com/Canela-san/isp-benchmark-suite}
+\begin{itemize}
+\item Suíte de scripts em Bash para testes automatizados de latência, \textit{jitter}, perda de pacotes e velocidade em rotas estratégicas (infraestrutura nacional, servidores de jogos, provedores de nuvem), com execução paralela de \texttt{ping}/\texttt{mtr} e tratamento de sinais (\textit{trap}) para limpeza segura de processos.
+\item Deteção automática de degradação de link físico (ex.: queda indevida de Gigabit para Fast Ethernet) e persistência de dados estruturados em série temporal (\texttt{.jsonl}) e logs legíveis em Markdown.
+\item Automação de coleta distribuída via \texttt{crontab} e módulo de análise em Python (Pandas, Seaborn, Matplotlib), gerido com \texttt{uv} (PEP 723), gerando gráficos comparativos de desempenho entre provedores.
+\end{itemize}
+\entrygap
+% ---- FIM: isp-benchmark-suite -------------------------------------------------
+
+% ---- INÍCIO: Motor DC PID -------------------------------------------------
+\entry{Controle de Velocidade de Motor DC}{S1/2026}{Projeto Acadêmico --- Laboratório de Controle (Unicamp)}{}
+\begin{itemize}
+\item Projeto e sintonia de um controlador PID para controle de velocidade de um motor DC, otimizado para atingir e frear na velocidade de referência no menor tempo possível.
+\item Modelagem da planta e ajuste dos ganhos do controlador pelo método do lugar das raízes (\textit{root locus}), com simulação da resposta em malha fechada em MATLAB/Simulink.
+\item Análise de tempo de acomodação, sobressinal (\textit{overshoot}) e estabilidade do sistema controlado.
+\end{itemize}
+\entrygap
+% ---- FIM: Motor DC PID -------------------------------------------------
+
+\section*{Educação}
+
+\entry{Unicamp --- Campinas}{2022 -- 2028 (previsto)}{Engenharia de Controle e Automação}{Campinas, SP}
+\vspace{4pt}
+
+\entry{ETEC}{2018 -- 2019}{Técnico em Informática}{}
+\vspace{4pt}
+
+\entry{ETEC}{2017 -- 2019}{Técnico em Informática para Internet}{}
+
+
+\section*{Habilidades e Competências}
+
+\begin{itemize}
+\item \textbf{Controle, Automação e Modelagem:} modelagem matemática e simulação de sistemas dinâmicos; projeto, sintonia e validação de controladores em malha fechada (PID, método do lugar das raízes) em MATLAB e Simulink; simulação de circuitos digitais e transitórios em \textit{Digital} e LTspice.
+\item \textbf{Sistemas Embarcados e Tempo Real:} arquiteturas de microprocessadores e microcontroladores (ARM Cortex-A8, PRU-ICSS, ESP32, RISC-V); programação de firmware em C, C++ e Assembly nativo; mapeamento de registradores, controle determinístico de \textit{jitter} e comunicação via barramentos SPI, I2C e OneWire.
+\item \textbf{Eletrônica, PCB e Instrumentação:} projeto, modelagem e simulação de esquemáticos e placas de circuito impresso (PCB) multicamadas no Altium Designer, da concepção à liberação para fabricação (Gerber, BOM); drivers de potência com MOSFET/BJT, proteção contra transientes (TVS) e circuitos de backup de energia (supercapacitores, \textit{soft-start}); técnicas de isolamento galvânico (dados e potência), \textit{level shifting} e condicionamento analógico de sinais; diagnóstico físico de circuitos com osciloscópio e multímetro.
+\item \textbf{Sistemas Operacionais Aplicados:} desenvolvimento embarcado em ambiente Linux (Debian/Ubuntu); configuração avançada de multiplexação de pinos (Pinmux) e Árvore de Dispositivos (Device Tree Overlay); administração de servidores locais Linux e SSH/SFTP.
+\item \textbf{Programação e Ciência de Dados:} Python avançado para automação de scripts, engenharia de dados de séries temporais e pós-processamento analítico (Pandas, NumPy, SciPy, PyQt6); gerenciamento de dependências e execução de scripts isolados com \texttt{uv} (PEP 723); Processamento Digital de Sinais (DSP) focado em análise espectral via FFT e filtragem digital; consultas estruturadas em SQL.
+\item \textbf{DevOps e Ferramentas de Engenharia:} versionamento e integração contínua (Git/GitHub); containerização e orquestração de microsserviços (Docker e Docker Compose) com automação em Shell Script (Bash); redes seguras com VPN mesh (Tailscale); automação e diagnóstico de rede via \texttt{cron}, \texttt{ping}, \texttt{mtr} e \texttt{jq}; ambiente de desenvolvimento VS Code.
+\end{itemize}
+
+
+\section*{Softwares e Ferramentas}
+% Lista compacta pensada para cobertura de palavras-chave em filtros automáticos (ATS).
+% Apague por categoria conforme a vaga.
+
+\textbf{Hardware / EDA:} Altium Designer, LTspice, \textit{Digital} (simulador lógico).
+
+\textbf{Simulação e Controle:} MATLAB, Simulink.
+
+\textbf{Embarcados / Firmware:} PlatformIO, Arduino Framework, Texas Instruments Code Generation Tools (\texttt{clpru}), Device Tree Overlays, \texttt{remoteproc}, \texttt{config-pin}.
+
+\textbf{Linguagens:} C, C++, Python, Assembly (PRU), SQL, \LaTeX, Bash/Shell Script.
+
+\textbf{Python / Dados:} NumPy, Pandas, SciPy, Matplotlib, Seaborn, PyQt6, \texttt{uv}.
+
+\textbf{DevOps / Infraestrutura:} Git, GitHub, Docker, Docker Compose, Tailscale, Linux (Ubuntu/Debian/Pop!\_OS), \texttt{cron}, \texttt{jq}, \texttt{mtr}, \texttt{speedtest-cli}, VS Code.
+
+
+\section*{Cursos, Certificações e Idiomas}
+
+\begin{itemize}
+\item \textbf{Português:} nativo.
+\item \textbf{Inglês --- Avançado (Nível Master Fluency):} certificação de conclusão de ciclo avançado, nível 11 --- CCAA (2015 -- 2020).
+\item \textbf{Japonês --- Básico (JLPT N5):} \textit{Japanese-Language Proficiency Test} --- certificado oficial de proficiência emitido pela Japan Foundation.
+\item \textbf{Formação Avançada em TI:} certificados de Qualificação Profissional em Desenvolvimento Web, Arquitetura de Redes e Banco de Dados, integrados ao Centro Paula Souza (ETEC).
+\end{itemize}
+
+\end{document}
