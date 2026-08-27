@@ -10,6 +10,12 @@ Currículo Geral (Com tudo que posso colocar, e formato amigável para ATS)
   <img src="Geral/Compativel_ATS/img4.png" width="75%" alt="Página 4">
 </p>
 
+<p align="center">
+  <img src="Geral/Currículo Estiloso/assets/cv_moderno_preview-1.png" width="75%" alt="Página 1">
+  <img src="Geral/Currículo Estiloso/assets/cv_moderno_preview-1.png" width="75%" alt="Página 2">
+</p>
+
+
 ## Como compilar o Currículo Moderno (`cv_moderno.tex`)
 
 Este modelo utiliza fontes nativas do sistema (Lato e Montserrat) e elementos visuais avançados. Para garantir a mais alta qualidade tipográfica e evitar erros de pacotes ausentes — priorizando um ambiente robusto, mesmo que exija um pouco mais de espaço em disco —, recomenda-se a instalação completa do ambiente TeX.
