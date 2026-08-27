@@ -1,0 +1,308 @@
+% ======================================================================
+% CURRÍCULO — VERSÃO ARROJADA / VISUAL — Gabriel Canela
+% ======================================================================
+% Compilar com XeLaTeX (necessário por causa das fontes Montserrat/Lato):
+%   xelatex cv_moderno.tex   (rodar 2x para acertar cor de fundo/paginação)
+%
+% FOTO DE PERFIL:
+%   Arquivo esperado: assets/foto_perfil.png
+%   Substitua por uma foto sua QUADRADA (proporção 1:1), mínimo 800x800px,
+%   rosto centralizado — ela será recortada em círculo automaticamente.
+%   Mantendo o mesmo nome/caminho de arquivo, não precisa mexer no código.
+% ======================================================================
+
+\documentclass[a4paper,10pt]{article}
+
+\usepackage{fontspec}
+\setmainfont{Lato}[
+  Path = /usr/share/fonts/truetype/lato/,
+  Extension = .ttf,
+  UprightFont = *-Regular,
+  BoldFont = *-Bold,
+  ItalicFont = *-Italic,
+  BoldItalicFont = *-BoldItalic,
+  Mapping = tex-text,
+]
+\newfontfamily\headfont{Montserrat}[
+  Path = /usr/share/fonts/truetype/montserrat/,
+  Extension = .ttf,
+  UprightFont = *-Regular,
+  BoldFont = *-Bold,
+  ItalicFont = *-Italic,
+  BoldItalicFont = *-BoldItalic,
+  Mapping = tex-text,
+]
+
+\usepackage[a4paper,left=1cm,right=1.5cm,top=1.4cm,bottom=1.4cm]{geometry}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{paracol}
+\usepackage{enumitem}
+\usepackage[skins]{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage{hyperref}
+\usepackage{ragged2e}
+
+% ---------- Paleta de cores ----------
+\definecolor{navy}{HTML}{1B2733}     % fundo da sidebar / títulos principais
+\definecolor{chipbg}{HTML}{29394B}   % fundo dos "chips" na sidebar
+\definecolor{teal}{HTML}{17A398}     % cor de destaque (accent)
+\definecolor{tealLight}{HTML}{2EC4B6}
+\definecolor{sidetext}{HTML}{C9D3DC} % texto claro sobre fundo escuro
+\definecolor{sidetextdim}{HTML}{8493A3} % texto secundário sobre fundo escuro
+\definecolor{maintext}{HTML}{2D3748} % texto principal (coluna branca)
+\definecolor{graytext}{HTML}{718096} % texto secundário (coluna branca)
+
+\hypersetup{
+    pdftitle={Gabriel Canela - Curriculo},
+    pdfauthor={Gabriel Canela},
+    colorlinks=true,
+    linkcolor=teal,
+    filecolor=teal,
+    urlcolor=teal,
+    citecolor=teal
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{2em}
+\pagestyle{empty}
+
+% ---------- Faixa lateral escura (sangra até a borda da página, em todas as páginas) ----------
+\newlength{\sidebarwidth}
+\setlength{\sidebarwidth}{7.4cm}
+\AddToShipoutPictureBG{%
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[navy] (current page.south west) rectangle ([xshift=\sidebarwidth]current page.north west);
+    \fill[teal] ([xshift=\sidebarwidth]current page.south west) rectangle ([xshift=\sidebarwidth+1mm]current page.north west);
+  \end{tikzpicture}%
+}
+
+% ---------- Comandos auxiliares ----------
+
+% Chip/etiqueta inline para habilidades e softwares (usado na sidebar)
+\newtcbox{\chip}[1][]{on line, arc=8pt, colback=chipbg, colframe=teal,
+  boxrule=0.5pt, left=5pt, right=5pt, top=2.5pt, bottom=2.5pt, boxsep=1pt,
+  fontupper=\fontsize{7.6}{9}\selectfont\color{sidetext}, #1}
+
+% Selo de data (usado nas entradas da coluna principal)
+\newtcbox{\datebadge}{on line, arc=7pt, colback=teal, colframe=teal,
+  left=6pt, right=6pt, top=2.5pt, bottom=2.5pt, boxsep=0pt,
+  fontupper=\fontsize{8}{9}\selectfont\bfseries\color{white}}
+
+% Título de subseção na sidebar
+\newcommand{\sidehead}[1]{%
+  \vspace{4pt}\noindent{\headfont\bfseries\fontsize{9.5}{11}\selectfont\color{teal}\MakeUppercase{#1}}\\[2pt]
+  {\color{teal}\rule{\linewidth}{0.7pt}}\\[7pt]%
+}
+
+% Título de seção na coluna principal
+\newcommand{\mainhead}[1]{%
+  \noindent{\headfont\bfseries\fontsize{15}{17}\selectfont\color{navy}\MakeUppercase{#1}}\\[2pt]
+  {\color{teal}\rule{2.4cm}{2.4pt}}\\[9pt]%
+}
+
+% Entrada padrão (experiência / projeto) na coluna principal
+% #1 = título   #2 = data   #3 = subtítulo   #4 = local/observação
+\newcommand{\mentry}[4]{%
+  \noindent{\headfont\bfseries\fontsize{11}{13}\selectfont\color{navy} #1}\hfill\datebadge{#2}\\[3pt]
+  {\itshape\color{graytext}\fontsize{9.3}{11}\selectfont #3}\hfill{\itshape\color{graytext}\fontsize{9.3}{11}\selectfont #4}\\[4pt]%
+}
+\newcommand{\entrygap}{\vspace{9pt}}
+
+% Bullets da coluna principal: marcador colorido, espaçamento confortável
+\setlist[itemize,1]{label=\textcolor{teal}{\footnotesize\textbullet},
+  leftmargin=1.1em, itemsep=3pt, topsep=2pt, parsep=0pt, partopsep=0pt}
+
+% Barras de nível de idioma (bolinhas cheias/vazias) — 5 níveis
+\newcommand{\dotfull}{{\color{teal}\textbullet}}
+\newcommand{\dotempty}{{\color{sidetextdim}\textbullet}}
+\newcommand{\levelfive}{\fontsize{7}{7}\selectfont\dotfull\dotfull\dotfull\dotfull\dotfull}
+\newcommand{\levelfour}{\fontsize{7}{7}\selectfont\dotfull\dotfull\dotfull\dotfull\dotempty}
+\newcommand{\leveltwo}{\fontsize{7}{7}\selectfont\dotfull\dotfull\dotempty\dotempty\dotempty}
+
+\begin{document}
+
+\setlength{\columnsep}{1.2cm}
+\columnratio{0.324}
+\begin{paracol}{2}
+
+% ======================================================================
+% COLUNA ESQUERDA — SIDEBAR ESCURA
+% ======================================================================
+\color{sidetext}
+
+\begin{center}
+\begin{tikzpicture}
+\clip (0,0) circle (1.8cm);
+\node at (0,0) {\includegraphics[width=3.6cm,height=3.6cm]{assets/foto_perfil.png}};
+\end{tikzpicture}\\[10pt]
+{\headfont\bfseries\fontsize{20}{22}\selectfont\color{white} Gabriel\\[1pt]Canela}\\[6pt]
+{\headfont\bfseries\fontsize{9.5}{11}\selectfont\color{teal}\MakeUppercase{Eng. de Controle e Automação}}
+\end{center}
+
+\vspace{16pt}
+
+\sidehead{Contato}
+\begin{flushleft}
+\fontsize{8.6}{13}\selectfont
+\faPhone\ \href{tel:+5519996831296}{+55 (19) 99683-1296}\\[5pt]
+\faEnvelope\ \href{mailto:gabriel.canela.ti@gmail.com}{gabriel.canela.ti@gmail.com}\\[5pt]
+\faMapMarker\ Campinas - SP, Brasil\\[5pt]
+\faGithub\ \href{https://github.com/Canela-san}{github.com/Canela-san}\\[5pt]
+\faLinkedin\ \href{https://www.linkedin.com/in/gabriel-canela-ti/}{linkedin.com/in/gabriel-canela-ti}
+\end{flushleft}
+
+\sidehead{Perfil}
+{\fontsize{8.8}{12.5}\selectfont
+Estudante de Engenharia de Controle e Automação (Unicamp), bolsista FAPESP em instrumentação embarcada para redes elétricas. Experiência de ponta a ponta em hardware e firmware sob demanda --- da PCB ao produto validado em campo --- unindo eletrônica de potência, sistemas em tempo real e automação de dados.\par}
+
+\sidehead{Formação}
+{\fontsize{8.8}{12}\selectfont
+\textbf{\color{white}Unicamp} --- Campinas\\
+Eng.\ de Controle e Automação\\
+{\color{sidetextdim}2022 -- 2028 (previsto)}\\[7pt]
+\textbf{\color{white}ETEC}\\
+Téc.\ em Informática\\
+{\color{sidetextdim}2018 -- 2019}\\[7pt]
+\textbf{\color{white}ETEC}\\
+Téc.\ em Informática para Internet\\
+{\color{sidetextdim}2017 -- 2019}\par}
+
+\sidehead{Ferramentas \& Tecnologias}
+
+{\fontsize{8}{11}\selectfont\color{sidetextdim} Embarcados / Firmware}\\[4pt]
+\chip{C} \chip{C++} \chip{Assembly}\\[4pt]
+\chip{ESP32} \chip{PlatformIO}\\[4pt]
+\chip{BeagleBone} \chip{PRU-ICSS}
+
+\vspace{8pt}
+
+{\fontsize{8}{11}\selectfont\color{sidetextdim} Eletrônica \& PCB}\\[4pt]
+\chip{Altium Designer}\\[4pt]
+\chip{LTspice} \chip{Digital}\\[4pt]
+\chip{Osciloscópio}
+
+\vspace{8pt}
+
+{\fontsize{8}{11}\selectfont\color{sidetextdim} Controle \& Simulação}\\[4pt]
+\chip{MATLAB} \chip{Simulink}\\[4pt]
+\chip{PID}
+
+\vspace{8pt}
+
+{\fontsize{8}{11}\selectfont\color{sidetextdim} Dados \& DevOps}\\[4pt]
+\chip{Python} \chip{Pandas}\\[4pt]
+\chip{NumPy} \chip{SQL} \chip{Git}\\[4pt]
+\chip{Docker} \chip{Linux}\\[4pt]
+\chip{Bash}
+
+\sidehead{Idiomas}
+{\fontsize{8.8}{15}\selectfont
+Português \hfill {\levelfive}\\
+Inglês --- Avançado \hfill {\levelfour}\\
+Japonês --- Básico (N5) \hfill {\leveltwo}\par}
+
+\switchcolumn
+
+% ======================================================================
+% COLUNA DIREITA — CONTEÚDO PRINCIPAL
+% ======================================================================
+\color{maintext}
+
+\mainhead{Experiência}
+
+% ---- FEEC Unicamp (FAPESP) ----
+\mentry{FEEC Unicamp (Projeto FAPESP)}{2025 -- Atual}{Pesquisador de Iniciação Científica}{Campinas, SP}
+\begin{itemize}
+\item Desenvolvimento de um sistema embarcado de medição de alta performance para identificação de supraharmônicos em redes elétricas, com taxas de amostragem na ordem de centenas de kHz.
+\item Programação de firmware em C e Assembly no subsistema de tempo real (PRU-ICSS) da BeagleBone Black, controlando o barramento SPI para aquisição de dados determinística.
+\item Elaboração de setups de teste e condução de validações experimentais baseadas em processamento digital de sinais (FFT).
+\end{itemize}
+\entrygap
+
+% ---- LabREI ----
+\mentry{LabREI --- FEEC Unicamp}{2022 -- 2024}{Técnico de Laboratório}{Campinas, SP}
+\begin{itemize}
+\item Apoio técnico a pesquisadores de pós-graduação na elaboração de setups de teste e validação experimental de projetos de eletrônica de potência.
+\item Integração de sistemas mecânicos e eletrônicos de um conversor CA/CC bidirecional de 4 pernas de alta potência: cotação de componentes, usinagem de painéis e conexões elétricas.
+\item Administração da infraestrutura de TI do laboratório: servidor local Linux Ubuntu, site institucional e certificados.
+\end{itemize}
+\entrygap
+
+% ---- Mecatron Jr. ----
+\mentry{Mecatron Projetos e Consultoria Jr.}{2022 -- 2023}{Assessor de Projetos}{Campinas, SP}
+\begin{itemize}
+\item Responsável de ponta a ponta pelo projeto \textbf{MecaVac} --- refrigerador inteligente para armazenamento de vacinas sob demanda de cliente externo --- da concepção ao hardware, firmware e entrega.
+\item PCB customizada de dupla camada no Altium Designer, integrando ESP32, drivers de potência e backup de energia por supercapacitores.
+\item Testes de bancada e campo até aprovação técnica formal do cliente, com produto validado e em operação.
+\end{itemize}
+\entrygap
+
+\mainhead{Projetos e Destaques}
+
+% ---- SH-Analyzer ----
+\mentry{SH-Analyzer}{2025 -- Atual}{Analisador de Supraharmônicos --- Bolsista FAPESP}{\href{https://github.com/Canela-san/SH-Analyzer}{\faGithub\ GitHub}}
+\begin{itemize}
+\item Sistema híbrido de instrumentação (BeagleBone Black + PCB customizada) para aquisição determinística de sinais, buscando superar o limite de aprox.\ 102,4~kHz de um protótipo anterior em C puro.
+\item Firmware em Assembly nativo para o PRU-ICSS, implementando o protocolo manual do ADC ADS8688 (16~bits) com captura multi-canal intercalada (\textit{round-robin}) e buffers \textit{ping-pong} na DDR sincronizados com o ARM.
+\item Calibração e FFT independentes por canal em Python (NumPy, SciPy, Pandas); depuração de um bug de saturação no SPI até um padrão característico de um optoacoplador, via script de diagnóstico dedicado.
+\end{itemize}
+\entrygap
+
+% ---- MecaVac ----
+\mentry{MecaVac}{2022}{Refrigerador Inteligente para Vacinas --- Mecatron Jr.}{\href{https://github.com/Canela-san/MecaVac}{\faGithub\ GitHub}}
+\begin{itemize}
+\item PCB de 2 camadas (Altium Designer) integrando ESP32-WROOM-32D, reguladores lineares, drivers de MOSFET e proteção contra transientes na entrada de energia.
+\item Firmware não bloqueante (máquina de estados, \texttt{millis()}) controlando dois módulos Peltier por PWM, a partir da leitura combinada de três sensores de temperatura (OneWire).
+\item Log de eventos em microSD com RTC, backup por supercapacitores e \textit{soft-start}; provisionamento de Wi-Fi via portal cativo com sincronização remota. Projeto aprovado após testes de campo.
+\end{itemize}
+\entrygap
+
+% ---- Custom Processor from Scratch ----
+\mentry{Custom Processor from Scratch}{2025 -- Atual}{Projeto de Microarquitetura e Hardware (MOSFETs)}{\href{https://github.com/Canela-san/ProcessorFromScratch}{\faGithub\ GitHub}}
+\begin{itemize}
+\item Concepção de arquitetura computacional a partir do nível de componentes físicos: ULA, banco de registradores e unidade de controle.
+\item Modelagem e simulação de circuitos lógicos no simulador \textit{Digital}, com transição planejada para portas lógicas baseadas em transistores MOSFET.
+\item Conjunto de instruções (ISA) e montador Assembly customizado, validados por meio da emulação de periféricos de display.
+\end{itemize}
+\entrygap
+
+% ---- Nuvem-Privada ----
+\mentry{Nuvem-Privada}{2026}{Infraestrutura NAS Self-Hosted --- Automação de TI}{\href{https://github.com/Canela-san/Nuvem-Privada}{\faGithub\ GitHub}}
+\begin{itemize}
+\item Orquestração e containerização com Docker e Docker Compose (Nextcloud, MariaDB, Redis) com \textit{health checks} entre serviços.
+\item Automação de manutenção via Shell Script: sincronização de arquivos, limpeza de banco e backups a frio.
+\item VPN mesh (Tailscale) para acesso remoto criptografado, sem exposição direta de portas à internet.
+\end{itemize}
+\entrygap
+
+% ---- isp-benchmark-suite ----
+\mentry{isp-benchmark-suite}{2026}{Auditoria de Qualidade de Rede --- Projeto Pessoal}{\href{https://github.com/Canela-san/isp-benchmark-suite}{\faGithub\ GitHub}}
+\begin{itemize}
+\item Scripts em Bash para testes automatizados de latência, \textit{jitter}, perda de pacotes e velocidade, com execução paralela de \texttt{ping}/\texttt{mtr}.
+\item Deteção automática de degradação de link físico, com dados em série temporal (\texttt{.jsonl}) e logs em Markdown.
+\item Coleta distribuída via \texttt{crontab} e análise em Python (Pandas, Seaborn), gerada com \texttt{uv} (PEP 723).
+\end{itemize}
+\entrygap
+
+% ---- Motor DC PID ----
+\mentry{Controle de Velocidade de Motor DC}{S1/2026}{Projeto Acadêmico --- Laboratório de Controle (Unicamp)}{}
+\begin{itemize}
+\item Projeto e sintonia de um controlador PID para velocidade de um motor DC, otimizado para menor tempo de resposta.
+\item Ajuste dos ganhos pelo método do lugar das raízes (\textit{root locus}), com simulação em malha fechada em MATLAB/Simulink.
+\end{itemize}
+\entrygap
+
+\mainhead{Certificações}
+\begin{itemize}
+\item \textbf{Inglês --- CCAA:} nível 11 (Master Fluency), 2015 -- 2020.
+\item \textbf{Japonês --- JLPT N5:} certificado oficial emitido pela Japan Foundation.
+\item \textbf{Centro Paula Souza (ETEC):} qualificações em Desenvolvimento Web, Arquitetura de Redes e Banco de Dados.
+\end{itemize}
+
+\end{paracol}
+
+\end{document}
